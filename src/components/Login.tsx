@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Form } from './Form';
+import { Forma } from './Forma';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { setUser } from 'store/slices/userSlice';
+
 
 const Login = () => {
 const dispatch = useAppDispatch();
@@ -25,10 +26,10 @@ const handleLogin = (email: string, password: string) => {
 
   return (
     <div>
-        <Form
-            title='Sign In'
-            handleClick={handleLogin}
-        />
+            <Forma
+                title='Sign In'
+                handleClick={handleLogin}
+            />
     </div>
   )
 }
