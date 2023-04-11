@@ -1,5 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+interface IncomesData {
+    id: any;
+    date: string;
+    name: string;
+    source: string;
+    summ: number;
+    note: string
+  }
+
 const incomeSlice = createSlice({
 name: 'incomes',
     initialState: [{
@@ -19,9 +28,9 @@ name: 'incomes',
             state[index] = action.payload;
         },
         deleteIncome: (state, action) => {
-            return state.filter((income) => income.id !== action.payload.id);
+                state.filter((income) => income.id !== action.payload.id);
+            }  
         }
-    }
 })
 
 export const {addIncome, editIncome, deleteIncome} = incomeSlice.actions;

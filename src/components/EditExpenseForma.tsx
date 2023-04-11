@@ -3,20 +3,20 @@ import Typography from '@mui/material/Typography'
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { Navigate, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'
-import { editIncome } from 'store/slices/incomeSlice';
+import { editExpense } from 'store/slices/expenseSlice';
 import { useParams } from 'react-router-dom'
 
-function EditIncomeForma() {
+function EditExpenseForma() {
 
 const id = useParams<{ id: string }>();
 const dispatch = useAppDispatch()
-const incomes = useAppSelector((state) => state.incomes);
-const editedIncome = incomes.filter((income) => income.id == id.id)
-const {date, name, source, summ, note} = editedIncome.length > 0 ? editedIncome[0] : {date: '', name: '', source: '', summ: '', note: ''}
+const expenses = useAppSelector((state) => state.expenses);
+const editedExpense = expenses.filter((expense) => expense.id == id.id)
+const {date, name, category, summ, note} = editedExpense.length > 0 ? editedExpense[0] : {date: '', name: '', category: '', summ: '', note: ''}
 
 const [upddate, setDate] = useState(date || '')
 const [updname, setName] = useState(name || '')
-const [updsource, setSource] = useState(source || '')
+const [updcategory, setCategory] = useState(category || '')
 const [updsumm, setSumm] = useState(summ || '')
 const [updnote, setNote] = useState(note || '')
 
@@ -24,15 +24,15 @@ const navigate = useNavigate()
 
 const handleUpdate = (e: any) => {
     e.preventDefault();
-    console.log(upddate, updname, updsource, updsumm, updnote);
-    dispatch(editIncome({id: id.id, date: upddate, name: updname, source: updsource, summ: updsumm, note: updnote}))
-    navigate('/income')
+    console.log(upddate, updname, updcategory, updsumm, updnote);
+    dispatch(editExpense({id: id.id, date: upddate, name: updname, category: updcategory, summ: updsumm, note: updnote}))
+    navigate('/expense')
 }
 
 
   return (
     <>
-      <Typography variant="h5">EDIT INCOME</Typography>
+      <Typography variant="h5">EDIT EXPENSE</Typography>
       <form onSubmit={handleUpdate}>
         <TextField
           value={upddate}
@@ -55,12 +55,12 @@ const handleUpdate = (e: any) => {
         />
         <br />
         <TextField
-          value={updsource}
-          onChange={e => setSource(e.target.value)}
+          value={updcategory}
+          onChange={e => setCategory(e.target.value)}
           style={{ width: "200px", margin: "5px" }}
           type="text"
-          name='source'
-          label="source"
+          name='category'
+          label="category"
           variant="outlined"
         />
         <br />
@@ -93,4 +93,4 @@ const handleUpdate = (e: any) => {
   )
 }
 
-export default EditIncomeForma
+export default EditExpenseForma

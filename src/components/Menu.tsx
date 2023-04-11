@@ -16,28 +16,28 @@ import { NavLink } from "react-router-dom";
             <Grid xs={3} md={3}>
                 <Item>
                 <Stack direction="column" spacing={2}>
-                <NavLink to="/income"> 
+                {/* <NavLink to="/income"> 
                         <Button variant="contained" startIcon={<CreditScoreIcon />}> 
                             Income
                         </Button> 
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink to="/expense">
                         <Button variant="outlined" startIcon={<LocalGroceryStoreIcon />}>
                             Expense
                         </Button>
                     </NavLink>
-                        <Button variant="outlined" startIcon={<MoneyOffIcon />}>
+                        {/* <Button variant="outlined" startIcon={<MoneyOffIcon />}>
                             Debts
-                        </Button>
+                        </Button> */}
                         <Button variant="outlined" startIcon={<InsightsIcon />}>
                             Dashboard
                         </Button>
                         <Button variant="outlined" startIcon={<CurrencyExchangeIcon />}>
                             Currencies
                         </Button>
-                        <Button variant="outlined" startIcon={<CreditScoreIcon />}>
+                        {/* <Button variant="outlined" startIcon={<CreditScoreIcon />}>
                             Other
-                        </Button>
+                        </Button> */}
                 </Stack>
                 </Item>
             </Grid>

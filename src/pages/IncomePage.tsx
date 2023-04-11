@@ -28,7 +28,7 @@ export default function Incomes() {
   const dispatch = useAppDispatch()
 
   const handleDelete = (id: string) => {
-    dispatch(deleteIncome(id))
+    dispatch(deleteIncome({id: id}))
   }
 
   return (
@@ -60,12 +60,12 @@ export default function Incomes() {
               <TableCell>{income.summ}</TableCell>
               <TableCell>{income.note}</TableCell>
               <TableCell>
-                <NavLink to={`/edit/${income.id}`}>
+                <NavLink to={`/edit_income/${income.id}`}>
                   <IconButton color="primary" aria-label="edit">
                     <EditIcon />
                   </IconButton>
                 </NavLink>
-                  <IconButton onClick={() => handleDelete(income.id)} aria-label="delete">
+                  <IconButton onClick={() => handleDelete(income.id as unknown as string)} aria-label="delete">
                     <DeleteIcon />
                   </IconButton>
               </TableCell>
