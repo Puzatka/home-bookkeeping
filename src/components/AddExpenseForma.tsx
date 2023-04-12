@@ -6,8 +6,10 @@ import { addExpense } from 'store/slices/expenseSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import {  MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
     function AddExpenseForma() {
+    const [type, setType] = useState('')
     const [date, setDate] = useState('')
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
@@ -18,6 +20,10 @@ import { v4 as uuidv4 } from 'uuid';
     const dispatch = useAppDispatch()
 
     const navigate = useNavigate()
+
+    const handleChange = (event: SelectChangeEvent) => {
+      setCategory(event.target.value as string);
+    };
     
     const handleSubmit = (e: any) => {
       e.preventDefault();
@@ -29,6 +35,15 @@ import { v4 as uuidv4 } from 'uuid';
     <>
       <Typography variant="h5">ADDING NEW EXPENSE</Typography>
       <form onSubmit={handleSubmit}>
+      <Select
+          style={{ width: "200px", margin: "5px" }}
+          value={type}
+          label="Select type"
+          onChange={handleChange}
+        >
+          <MenuItem value={'income'}>Income</MenuItem>
+          <MenuItem value={'expense'}>expense</MenuItem>
+        </Select>
         <TextField
         value={date}
           onChange={e => setDate(e.target.value)}
@@ -48,14 +63,29 @@ import { v4 as uuidv4 } from 'uuid';
           variant="outlined"
         />
         <br />
-        <TextField
+        {/* <TextField
           onChange={e => setCategory(e.target.value)}
           style={{ width: "200px", margin: "5px" }}
           type="text"
           name='category'
           label="category"
           variant="outlined"
-        />
+        /> */}
+         <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          style={{ width: "200px", margin: "5px" }}
+          value={category}
+          label="Category"
+          onChange={handleChange}
+        >
+          <MenuItem value={'food'}>food</MenuItem>
+          <MenuItem value={'wear'}>wear</MenuItem>
+          <MenuItem value={'fuel'}>fuel</MenuItem>
+          <MenuItem value={'car'}>car</MenuItem>
+          <MenuItem value={'educating'}>educatig</MenuItem>
+          <MenuItem value={'children'}>children</MenuItem>
+        </Select>
         <br />
         <TextField
           onChange={e => setSumm(e.target.value)}

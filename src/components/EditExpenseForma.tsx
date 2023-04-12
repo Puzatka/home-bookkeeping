@@ -5,13 +5,14 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'
 import { editExpense } from 'store/slices/expenseSlice';
 import { useParams } from 'react-router-dom'
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 function EditExpenseForma() {
 
-const id = useParams<{ id: string }>();
+const { id } = useParams<{ id: string }>();
 const dispatch = useAppDispatch()
 const expenses = useAppSelector((state) => state.expenses);
-const editedExpense = expenses.filter((expense) => expense.id == id.id)
+const editedExpense = expenses.filter((expense) => expense.id == id)
 const {date, name, category, summ, note} = editedExpense.length > 0 ? editedExpense[0] : {date: '', name: '', category: '', summ: '', note: ''}
 
 const [upddate, setDate] = useState(date || '')
@@ -22,10 +23,14 @@ const [updnote, setNote] = useState(note || '')
 
 const navigate = useNavigate()
 
+const handleChange = (event: SelectChangeEvent) => {
+  setCategory(event.target.value as string);
+};
+
 const handleUpdate = (e: any) => {
     e.preventDefault();
     console.log(upddate, updname, updcategory, updsumm, updnote);
-    dispatch(editExpense({id: id.id, date: upddate, name: updname, category: updcategory, summ: updsumm, note: updnote}))
+    dispatch(editExpense({ id: id, date: upddate, name: updname, category: updcategory, summ: updsumm, note: updnote}))
     navigate('/expense')
 }
 
@@ -54,7 +59,7 @@ const handleUpdate = (e: any) => {
           variant="outlined"
         />
         <br />
-        <TextField
+        {/* <TextField
           value={updcategory}
           onChange={e => setCategory(e.target.value)}
           style={{ width: "200px", margin: "5px" }}
@@ -62,7 +67,19 @@ const handleUpdate = (e: any) => {
           name='category'
           label="category"
           variant="outlined"
-        />
+        /> */}
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          style={{ width: "200px", margin: "5px" }}
+          value={category}
+          label="Category"
+          onChange={handleChange}
+        >
+          <MenuItem value={'food'}>Food</MenuItem>
+          <MenuItem value={'wear'}>Wear</MenuItem>
+          <MenuItem value={'fuel'}>Fuel</MenuItem>
+        </Select>
         <br />
         <TextField
           value={updsumm}
@@ -87,7 +104,7 @@ const handleUpdate = (e: any) => {
         {/* <Button variant="contained" color="primary">
           Add Income
         </Button> */}
-        <button>Update</button>
+        <button type="submit">Update</button>
       </form>
     </>
   )

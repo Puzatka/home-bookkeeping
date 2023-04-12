@@ -16,6 +16,7 @@ import { NavLink } from 'react-router-dom';
 import { CurrentDate } from 'helpers/helper';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { deleteExpense } from 'store/slices/expenseSlice';
+import BasicModal from 'components/TransactModal';
 
 let date = CurrentDate();
 
@@ -39,6 +40,7 @@ export default function Expenses() {
             Add New
           </Button>
         </NavLink>
+        <BasicModal/>
         <Title>Expenses</Title>
       </Stack>
       <Table size="small">

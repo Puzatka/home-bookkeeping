@@ -1,6 +1,5 @@
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom'
-import './App.css';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import IncomePage from './pages/IncomePage';
@@ -10,6 +9,7 @@ import AddIncomeForma from 'components/AddIncomeForma';
 import EditIncomeForma from 'components/EditIncomeForma';
 import AddExpenseForma from 'components/AddExpenseForma';
 import EditExpenseForma from 'components/EditExpenseForma';
+import DashboardPage from './pages/DashboardPage';
 
 
 
@@ -23,6 +23,7 @@ function App() {
           <Route index element={<ExpensePage/>} />
             {/* <Route path="income" element={<IncomePage/>} /> */}
             <Route path="expense" element={<ExpensePage/>} />
+            <Route path="dashboard" element={<DashboardPage/>} />
             {/* <Route path="add_income" element={<AddIncomeForma/>} /> */}
             <Route path="add_expense" element={<AddExpenseForma/>} />
             {/* <Route path="edit_income/:id" element={<EditIncomeForma/>} /> */}
